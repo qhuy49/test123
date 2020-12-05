@@ -1,0 +1,24 @@
+﻿@using WEBSITE_BANHANG.Models;
+@{
+    ViewBag.Title = "SanPham1";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<h2>SanPham1</h2>
+<h2>Sản phẩm mới</h2>
+
+
+@{ IEnumerable<SanPham> lstSP = (IEnumerable<SanPham>)ViewBag.LstSP;}
+
+@{ IEnumerable<SanPham> lstDT = (IEnumerable<SanPham>)ViewBag.LstDT;}
+<div class="row">
+
+    @Html.Partial("SanPhamPartial", lstSP)
+</div>
+
+<h2>Điện thoại mới</h2>
+<div class="row">
+
+    @Html.Partial("SanPhamPartial", lstDT)
+</div>
+@*@Html.Action("SanPhamPartial")*@

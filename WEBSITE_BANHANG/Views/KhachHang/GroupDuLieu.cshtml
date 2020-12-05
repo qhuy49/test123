@@ -1,0 +1,15 @@
+﻿@model IEnumerable< WEBSITE_BANHANG.Models.ThanhVien>
+@{
+    ViewBag.Title = "GroupDuLieu";
+}
+
+<h2>GroupDuLieu</h2>
+
+@foreach(var group in Model.GroupBy(n=>n.LoaiThanhVien))
+{
+    <div>@group.Key.TenLoai</div>
+    foreach (var item in group)
+    {
+        <p>@item.TaiKhoan</p>
+    }
+}

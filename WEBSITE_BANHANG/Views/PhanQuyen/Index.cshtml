@@ -1,0 +1,175 @@
+﻿@model IEnumerable< WEBSITE_BANHANG.Models.LoaiThanhVien>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+    var grid = new System.Web.Helpers.WebGrid(
+       source: Model,
+       columnNames: new List<string>() { "Title" },
+       ajaxUpdateContainerId: "myGrid",
+       defaultSort: "Name",
+       canPage: true,
+       canSort: true,
+       rowsPerPage: 5
+       );
+    grid.SortDirection = SortDirection.Ascending;
+}
+
+
+
+
+
+
+@grid.GetHtml(
+         tableStyle: "table", /*your class name for this property*/
+         headerStyle: "webgrid-header",/*your class name for this property*/
+         footerStyle: "webgrid-footer", /*your class name for this property*/
+         rowStyle: "webgrid-row-style", /*your class name for this property*/
+         alternatingRowStyle: "webgrid-alternating-row",/*your class name...*/                                         
+         selectedRowStyle: "webgrid-selected-row",/*your class name for this property*/
+
+         firstText: "<<",
+         lastText: ">>",
+         mode: WebGridPagerModes.All,
+         fillEmptyRows: true,
+
+         columns: grid.Columns(
+          grid.Column("MaLoaiTV", "Mã loại TV", style: "span1", canSort: true),
+          grid.Column("TenLoai", "Tên Loại", style: "span2", canSort: true),
+          grid.Column("UuDai", "Ưu Đãi", style: "span2", canSort: true),
+  
+           //some format usage samples:
+           //grid.Column("Email", "e-mail", style: "span1", canSort: true, format: @<a href="mailto:@item.Email">@item.Email</a>),
+           //grid.Column("BirthDate", format: p=>p.BirthDate.ToShortDateString()),
+
+//for using multiple Html.ActionLink in a column using Webgrid
+grid.Column("Operations", format: (item) =>
+    new HtmlString(
+          Html.ActionLink("Thêm ", "Edit", "Admin", new
+          {
+              applicantId = item.MaLoaiTV,
+              title = "Detail",
+              @class = "icon-link",
+              style = "background-image: url('../../Content/icons/detail.png')"
+          }, null).ToString() +
+          Html.ActionLink(" Sửa", "Edit", "Admin", new
+          {
+              applicantId = item.TenLoai,
+              title = "Edit",
+              @class = "icon-link",
+              style = "background-image: url('../../Content/icons/edit.png')"
+          }, null).ToString() +
+          Html.ActionLink(" Xóa", "Edit", "Admin", new
+          {
+              applicantId = item.UuDai,
+              title = "Delete",
+              @class = "icon-link",
+              style = "background-image: url('../../Content/icons/delete.png')"
+          }, null).ToString()
+    )
+)
+),
+numericLinksCount: 5
+)
+<style type="text/css">
+    .webgrid-operations { /*for limiting the width of Operations
+                             menu used in the WebGrid*/
+        width: 65px;
+    }
+
+    .webgrid-header td {
+        text-align: left;
+    }
+
+    .webgrid-header th {
+        background-color: #EFEFEF;
+        margin-bottom: 2px;
+    }
+
+    .webgrid td {
+        padding-right: 15px;
+    }
+
+    .webgrid-footer td {
+        font-family: 'open_sanssemibold', sans-serif;
+        font-size: 1em;
+        text-align: right !important;
+        padding-right: 21px !important;
+        color: #000;
+        background-color: #EFEFEF;
+    }
+
+        .webgrid-footer td a {
+            text-align: right !important;
+            padding: 0 .4em 0 .4em;
+            font-size: .83em;
+            text-decoration: none;
+            color: #FFFFFF;
+            border: 1px solid #C0C0C0;
+            background-color: #808080;
+        }
+
+            .webgrid-footer td a:hover {
+                background-color: #6BBEC7;
+            }
+
+            .webgrid-footer td a.selected {
+                background-color: #f00;
+                color: #f00;
+            }
+
+    .webgrid a {
+        color: #fff;
+    }
+
+    .colRowButton {
+        width: 70px;
+        text-align: left;
+    }
+
+    .webgrid-row-style {
+        /*border-bottom: 1px solid #E8EEF4;*/
+    }
+
+    .webgrid-alternating-row td {
+        /*background-color: #f9f9f9;*/
+    }
+
+    .webgrid-selected-row {
+        /*font-weight: bold;*/
+    }
+
+    <style type="text/css" >
+    a.icon-link {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: 0px 0px;
+        border: none;
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        vertical-align: middle;
+    }
+
+    .span5 {
+        width: 380px
+    }
+
+    .span4 {
+        width: 300px
+    }
+
+    .span3 {
+        width: 220px
+    }
+
+    .span2 {
+        width: 140px
+    }
+
+    .span1 {
+        width: 60px
+    }
+</style>
+
+

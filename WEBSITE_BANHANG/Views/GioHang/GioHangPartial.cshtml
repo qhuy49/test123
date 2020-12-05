@@ -1,0 +1,34 @@
+﻿
+
+
+<div id="giohangpt" class="col-2 top_nav_right text-center mt-sm-0 mt-2">
+    <div class="wthreecartaits wthreecartaits2 cart cart box_1">
+        <form action="@Url.Action("XemGioHang","GioHang")" method="post" @*class="last"*@>
+            <input type="hidden" name="cmd" value="_cart">
+            <input type="hidden" name="display" value="1">
+
+            <button class="btn w3view-cart" type="submit" name="submit" value="">
+                <i class="fas fa-cart-arrow-down"></i>
+            </button>
+            <div class="minicarts-details-quantity">
+                
+           
+                @ViewBag.TongSoLuong
+            </div>
+            <div class="minicarts-subtotal"> @ViewBag.TongThanhTien.ToString("#,##")  VNĐ        </div>
+        </form>
+    </div>
+</div>
+
+@*<div id="PPminicarts">
+    <form method="post" @*class="minicarts-empty" action="@Url.Action("XemGioHang","GioHang")" target="">
+        <button type="button" class="minicarts-closer">×</button>
+        <ul>            </ul>
+        <div class="minicarts-footer">
+            <p class="minicarts-empty-text">Your shopping cart is empty</p>
+        </div>
+        <input type="hidden" name="cmd" value="_cart">  
+        <input type="hidden" name="upload" value="1">          
+        <input type="hidden" name="bn" value="minicarts_AddToCart_WPS_US">
+    </form>
+</div>*@

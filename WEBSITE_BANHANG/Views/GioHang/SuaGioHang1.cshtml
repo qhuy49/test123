@@ -1,0 +1,52 @@
+﻿@using WEBSITE_BANHANG.Models
+@model ItemGioHang
+@{
+    ViewBag.Title = "SuaGioHang1";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+}
+
+@{
+    List<ItemGioHang> lstgiohang = ViewBag.lstgiohang as List<ItemGioHang>;
+}
+
+<table class="table">
+    <tr>
+        <td> Mã SP</td>
+        <td> Tên SP</td>
+        <td> Hình Ảnh</td>
+        <td> Số Lượng</td>
+        <td> Đơn Giá</td>
+        <td> Thành Tiền</td>
+    </tr>
+    @foreach (var item in lstgiohang)
+    {
+        //sản phẩm có mã sp đc gửi từ tham số bên trang xem giỏ hàng
+        if (Model.MaSP == item.MaSP)
+        {
+            using (Html.BeginForm("SuaGioHang1", "GioHang"))
+            {
+                <tr>
+                    <td>@item.MaSP</td>
+                    <td>@item.TenSP</td>
+                    <td><img src="@Url.Content("~/Content/HinhAnhSP/" + item.HinhAnh)" style="width:50px;height:50px;" /></td>
+                    <td> @Html.EditorFor(model => model.SoLuong)</td>
+                    <td>@item.DonGia.ToString("#,##") đồng</td>
+                    <td>@item.ThanhTien.ToString("#,##") đồng</td>
+                    <td><input type="submit" value="Cập nhật" /></td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>@item.MaSP</td>
+                <td>@item.TenSP</td>
+                <td><img src="@Url.Content("~/Content/HinhAnhSP/"+item.HinhAnh)" style="width:50px;height:50px;" /></td>
+                <td> @item.SoLuong</td>
+                <td>@item.DonGia.ToString("#,##") đồng</td>
+                <td>@item.ThanhTien.ToString("#,##") đồng</td>
+                <td>@Html.ActionLink("Sửa", "SuaGioHang1", new { @MaSP = item.MaSP })</td>
+            </tr>
+        }
+    }
+</table>

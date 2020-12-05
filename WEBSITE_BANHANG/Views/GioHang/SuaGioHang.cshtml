@@ -1,0 +1,71 @@
+﻿@using WEBSITE_BANHANG.Models
+@model ItemGioHang
+@{
+    ViewBag.Title = "SuaGioHang";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+}
+
+@{
+    List<ItemGioHang> lstgiohang = ViewBag.lstgiohang as List<ItemGioHang>;
+}
+
+<table class="table">
+    <tr>
+        <td> Mã SP</td>
+        <td> Tên SP</td>
+        <td> Hình Ảnh</td>
+        <td> Số Lượng</td>
+        <td> Đơn Giá</td>
+        <td> Thành Tiền</td>
+    </tr>
+    @foreach (var item in lstgiohang)
+    {
+        //sản phẩm có mã sp đc gửi từ tham số bên trang xem giỏ hàng
+        if (Model.MaSP == item.MaSP)
+        {
+            using (Html.BeginForm("SuaGioHang", "GioHang", new { @soluong = item.SoLuong, @MaSP = item.MaSP }))
+            {
+                <tr>
+                    <td>@item.MaSP</td>
+                    <td>@item.TenSP</td>
+                    <td><img src="@Url.Content("~/Content/HinhAnhSP/" + item.HinhAnh)" style="width:50px;height:50px;" /></td>
+                    <td>
+                        @Html.TextBox("SoLuong", item.SoLuong, new { @class = "suasoluong" })
+                        <p style="color:red" id="tbsoluong"></p>
+                    </td>
+                   
+                    <td>@item.DonGia.ToString("#,##") đồng</td>
+                    <td>@item.ThanhTien.ToString("#,##") đồng</td>
+                    <td><input type="submit" value="Cập nhật" id="capnhatgiohang" /></td>
+                    <td>@Html.ActionLink("Xóa", "XoaGioHang", new { @MaSP = item.MaSP })</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>@item.MaSP</td>
+                <td>@item.TenSP</td>
+                <td><img src="@Url.Content("~/Content/HinhAnhSP/"+item.HinhAnh)" style="width:50px;height:50px;" /></td>
+                <td> @item.SoLuong</td>
+                <td>@item.DonGia.ToString("#,##") đồng</td>
+                <td>@item.ThanhTien.ToString("#,##") đồng</td>
+                <td>@Html.ActionLink("Sửa", "SuaGioHang", new { @MaSP = item.MaSP })</td>
+            </tr>
+        }
+    }
+</table>
+@*ktra số lượng thay đổi*@
+<script type="text/javascript">
+    $("#capnhatgiohang").click(function () {
+        //ktra số lượng k phải số hợặc nhỏ hơn 0
+        var sl = $(".suasoluong").val();
+        if (isNaN(sl) == true || sl < 0) {
+            $("#tbsoluong").text("Số lượng không hợp lệ!!!");
+            return false;
+        }
+      
+    });
+
+
+</script>

@@ -1,0 +1,159 @@
+﻿@using WEBSITE_BANHANG.Models;
+@model List<ItemGioHang>
+
+@{
+    ViewBag.Title = "XemGioHang";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+}
+
+@if (Model.Count == 0)
+{
+    <h1> Giỏ hàng rỗng !</h1>
+}
+else
+{
+
+    <table class="table">
+        <tr>
+            <td> Mã SP</td>
+            <td> Tên SP</td>
+            <td> Hình Ảnh</td>
+            <td> Số Lượng</td>
+            <td> Đơn Giá</td>
+            <td> Thành Tiền</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.MaSP</td>
+            <td>@item.TenSP</td>
+            <td><img src="@Url.Content("~/Content/HinhAnhSP/"+item.HinhAnh)" style="width:50px;height:50px;" /></td>
+            <td> @item.SoLuong</td>
+            <td>@item.DonGia.ToString("#,##") đồng</td>
+            <td>@item.ThanhTien.ToString("#,##") đồng</td>
+        @*   <td> @Ajax.ActionLink("Sửa Ajax", "SuaGioHangAjax", new { @MaSP = item.MaSP }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "giohangpt", InsertionMode = InsertionMode.Replace })</td>*@
+            <td>@Html.ActionLink("Sửa", "SuaGioHang", new { @MaSP = item.MaSP })</td>
+            <td>@Html.ActionLink("Xóa", "XoaGioHang", new { @MaSP = item.MaSP })</td>
+        </tr>
+        }
+    </table>
+
+    using (Html.BeginForm("DatHang", "GioHang"))
+    {
+        if (Session["TaiKhoan"] == null)
+        {
+
+
+            //Thiết kế form lưu thông tin khách hàng đối với khách vãng lai(không có tk)
+            <div class="thongtinmuahang">
+
+                <table class="table" align="center">
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="2"><b>Thông tin khách hàng</b></td>
+
+                        </tr>
+                        <tr>
+                            <td>Họ tên</td>
+                            <td>
+                                @Html.TextBox("TenKH")
+                                <p style="color:red" id="thongbaoTKH"></p>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ</td>
+                            <td>
+                                @Html.TextArea("DiaChi", new { @id = "diachi123" })
+                                <p style="color:red" id="tbdiachi"></p>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>
+                                @Html.TextBox("Email", "", new { @id = "email123" })
+                                <p style="color:red" id="tbemail"></p>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Điện thoại</td>
+                            <td>
+                                @Html.TextBox("SoDienThoai", "", new { @id = "sdt123", @type = "number" })
+                                <p style="color:red" id="tbsdt"></p>
+                            </td>
+
+                        </tr>
+                     
+                    </tbody>
+                </table>
+
+            </div>
+            @* script validation  *@
+            <script type="text/javascript">
+
+
+
+                $("#btndathang").click(function () {
+                    var loi = 0;
+                    if ($("#TenKH").val() == "") {
+                        $("#thongbaoTKH").text("Tên khách hàng không được bỏ trống!!");
+                        loi++;
+
+                    }
+                    else {
+
+                        $("#thongbaoTKH").text("");
+                    }
+
+                    if ($("#diachi123").val() == "") {
+                        $("#tbdiachi").text("Địa chỉ khách hàng không được bỏ trống!!");
+                        loi++;
+
+                    }
+                    else {
+
+                        $("#tbdiachi").text("");
+                    }
+                    //var a = $("#DiaChi").val();
+                    if ($("#sdt123").val() == "") {
+                        $("#tbsdt").text("Số ĐT khách hàng không được bỏ trống!!");
+                        loi++;
+
+                    }
+                    else {
+
+                        $("#tbsdt").text("");
+                    }
+
+                    var ktra = /^([a-zA-Z0-9_\-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+                    var ktraemail = ktra.test($("#email123").val());
+                    if (!ktraemail) {
+                        $("#tbemail").text("Email khách hàng không hợp lệ!!");
+                        loi++;
+
+                    }
+
+
+
+                    if (loi != 0) {
+                        //console.log(a.toString());
+                        // ngăn submit đến server
+                        return false;
+                    }
+                });
+
+
+            </script>
+        }
+        <div class="divdathang" style="text-align:right">
+            <input type="submit" value="Đặt hàng" id="btndathang" class="btn btn-danger" />
+            @Html.ActionLink("Mua tiếp", "Index", "Home", "", new { @class = "btn btn-success" })
+        </div>
+    }
+
+
+}
+
+

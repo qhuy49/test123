@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "DemoAjax";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+@*SỬ DING ACTION LINK*@
+@Ajax.ActionLink("LoadAjax", "LoadSanPhamPartial", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "row", InsertionMode = InsertionMode.Replace,LoadingElementId="divloading" })
+
+<div class="row" id="row">
+    @*<div id="quanghuy">Đây là kết quả: </div>*@
+</div>
+<div id="divloading" style="display:none">
+    <img src="~/Content/images/spinner-icon-gif-10.jpg" />
+
+</div>
+
+@*SỬ DING BEGIN FORM*@
+@*@using (Ajax.BeginForm("LoadAjaxbeginForm", new AjaxOptions { HttpMethod = "post", UpdateTargetId = "quanghuy", InsertionMode = InsertionMode.InsertAfter }))
+    {
+        <input name="txt1" />
+        <input type="submit" value="submit"/>
+    }*@
+
+@*<input id="txt1" />
+<input id="txt2" />
+        <input type="button" value="button jquery ajax"id=buttonajax />*@
+
+@*<script>
+    $("#buttonajax").click(function () {
+        $("#divloading").show();
+        var ts1 = $("#txt1").val();
+        var ts2 = $("#txt2").val();
+        $.ajax({
+            type: "GET",
+            data: { a: ts1, b: ts2 },
+            url: '@Url.Content("AjaxJquery")',
+            success: function (ketqua) {
+                $("#divloading").hide();
+                $("#quanghuy").html(ketqua);
+            }
+        })
+    });
+</script>*@

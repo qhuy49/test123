@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WEBSITE_BANHANG.Models.KhachHang>
+@{
+    ViewBag.Title = "SortDuLieu";
+}
+
+<h2>SortDuLieu</h2>
+
+<div>
+    <table border="1">
+        <tr>
+            <td>Mã khách hàng</td>
+            <td>Tên khách hàng</td>
+            <td>Địa chỉ</td>
+            <td>Email</td>
+            <td>Số điện thoại</td>
+
+        </tr>
+        @*lặp lấy dữ liệu*@
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaKH</td>
+                <td>@item.TenKH</td>
+                <td>@item.DiaChi</td>
+                <td>@item.Email</td>
+                <td>@item.SoDienThoai</td>
+            </tr>
+        }
+    </table>
+</div>

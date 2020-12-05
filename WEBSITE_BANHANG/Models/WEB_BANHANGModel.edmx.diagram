@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c1034b02bef94928a2a790646f26118f" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="WEB_BANHANGModel.BinhLuan" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEB_BANHANGModel.ChiTietDonDatHang" Width="1.5" PointX="8.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEB_BANHANGModel.ChiTietPhieuNhap" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEB_BANHANGModel.DonDatHang" Width="1.5" PointX="6" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEB_BANHANGModel.KhachHang" Width="1.5" PointX="3.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEB_BANHANGModel.LoaiSanPham" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEB_BANHANGModel.LoaiThanhVien" Width="1.5" PointX="0.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEB_BANHANGModel.NhaCungCap" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEB_BANHANGModel.NhaSanXuat" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEB_BANHANGModel.PhieuNhap" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEB_BANHANGModel.SanPham" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WEB_BANHANGModel.ThanhVien" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_BinhLuan_SanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_BinhLuan_ThanhVien" ManuallyRouted="false" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_ChiTietDonDatHang_DonDatHang" ManuallyRouted="false" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_ChiTietDonDatHang_SanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_ChiTietPhieuNhap_PhieuNhap" ManuallyRouted="false" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_ChiTietPhieuNhap_SanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_DonDatHang_KhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_KhachHang_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_SanPham_LoaiSanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_ThanhVien_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_PhieuNhap_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_SanPham_NhaCungCap" ManuallyRouted="false" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_SanPham_NhaSanXuat" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WEB_BANHANGModel.LoaiThanhVien_Quyen" Width="1.5" PointX="6" PointY="16.375" />
+        <EntityTypeShape EntityType="WEB_BANHANGModel.Quyen" Width="1.5" PointX="3.75" PointY="20.625" />
+        <EntityTypeShape EntityType="WEB_BANHANGModel.Table" Width="1.5" PointX="7.375" PointY="5.75" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_LoaiThanhVien_Quyen_LoaiThanhVien" />
+        <AssociationConnector Association="WEB_BANHANGModel.FK_LoaiThanhVien_Quyen_Quyen" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
